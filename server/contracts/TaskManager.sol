@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-contract TaskManager {
+contract TaskManagerContract {
     event AddTask(address recipient, string taskText, uint256 taskId);
     event DeleteTask(uint256 taskId, bool isDeleted);
 
