@@ -1,0 +1,37 @@
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    background-color: rgb(166, 170, 181);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.delete_task_btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 80px;
+    box-sizing: border-box;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    min-width: 64px;
+    box-shadow: none;
+    border-radius: 4px;
+    font-family: Inter, Arial;
+    font-weight: 600;
+    line-height: 1.5rem;
+    font-size: 0.875rem;
+    padding: 6px 12px;
+    color: rgb(248, 247, 250);
+    background: linear-gradient(248.86deg, rgb(70, 132, 180) 10.51%, rgb(232, 138, 6) 93.41%);
+  }
