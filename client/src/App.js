@@ -8,33 +8,6 @@ import './App.css';
 import Task from './components/Task';
 import Header from './components/Header';
 
-const temptask = [
-  {
-    taskId: "101",
-    taskText: "Task 1",
-  },
-  {
-    taskId: "102",
-    taskText: "Task 2",
-  },
-  {
-    taskId: "103",
-    taskText: "Task 3",
-  },
-  {
-    taskId: "101",
-    taskText: "Task 1",
-  },
-  {
-    taskId: "102",
-    taskText: "Task 2",
-  },
-  {
-    taskId: "103",
-    taskText: "Task 3",
-  }
-];
-
 function App() {
   const [tasks, setTasks] = useState([]);
   const [taskInput, setTaskInput] = useState('');
@@ -119,7 +92,7 @@ function App() {
       console.log("ERROR in deleteTask:: ", error);
     }
   }
-
+console.log("currentAddress==>>", currentAddress)
   return (
     <div className="App">
       <header className="App-header">
@@ -127,35 +100,34 @@ function App() {
       </header>
       {currentAddress === '' ? (
         <div className="not_connected_section">
-          {correctNetwork ? (
-            <>
-              <h1>Please connect your <span className="metamask_text">Metamask</span> wallet</h1>
-              <p>Please connect your wallet to manage your tasks!!</p>
-              <div className="header__right">
-                <button className="connect_wallet_btn" onClick={connectWallet}>Connect Wallet</button>
-              </div>
-            </>
-          ) : (
-            <>
-              <h1>Please connect <span className="goerli_text">Goerli</span> Network</h1>
-              <p>Please connect Goerli Network to manage your tasks!!</p>
-              <div className="header__right">
-                <button className="connect_wallet_btn" onClick={connectWallet}>Connect Wallet</button>
-              </div>
-            </>
-          )}
+          <h1>Please connect your <span className="metamask_text">Metamask</span> wallet</h1>
+          <p>Please connect your wallet to manage your tasks!!</p>
+          <div className="header__right">
+            <button className="connect_wallet_btn" onClick={connectWallet}>Connect Wallet</button>
+          </div>
         </div>
       ) : (
-        <>
-          <div className="add_task">
-            <input type="text" className="task_input" value={taskInput} onChange={(e) => setTaskInput(e.target.value)} />
-            <button onClick={addTask} className="add_task_btn">ADD TASK</button>
+        correctNetwork ? (
+          <>
+            <div className="add_task">
+              <input type="text" className="task_input" value={taskInput} onChange={(e) => setTaskInput(e.target.value)} />
+              <button onClick={addTask} className="add_task_btn">ADD TASK</button>
+            </div>
+            <div className='taskList'>
+              {tasks.map((task) => {
+                return <Task taskId={task.taskId} taskText={task.taskText} deleteHandler={deleteTask} />
+              })}
+            </div>
+          </>
+        ) : (
+          <div className="not_connected_section">
+            <h1>Please connect <span className="goerli_text">Goerli</span> Network</h1>
+            <p>Please connect Goerli Network to manage your tasks!!</p>
+            <div className="header__right">
+              <button className="connect_wallet_btn" onClick={connectWallet}>Connect Wallet</button>
+            </div>
           </div>
-          <div className='taskList'>
-            {temptask.map((task) => {
-              return <Task taskId={task.taskId} taskText={task.taskText} deleteHandler={deleteTask} />
-            })}
-          </div></>
+        )
       )}
     </div>
   );
